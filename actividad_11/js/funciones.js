@@ -37,8 +37,15 @@ function mostrarPacientes() {
     lista.innerHTML = "";
 
     pacientes.forEach(p => {
+        // 1. Elegimos el color de la fila según el riesgo
+        let claseFila = "";
+        if (p.riesgo === "Rojo (Crítico)") claseFila = "table-danger";
+        else if (p.riesgo === "Amarillo (Urgente)") claseFila = "table-warning";
+        else claseFila = "table-success";
+
+        // 2. Le inyectamos esa variable claseFila a la etiqueta <tr>
         lista.innerHTML += `
-            <tr>
+            <tr class="${claseFila}">
                 <td>${p.nombre}</td>
                 <td>${p.oxigenacion}%</td>
                 <td>${p.ritmo}</td>
